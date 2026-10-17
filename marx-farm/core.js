@@ -3,7 +3,7 @@
 const intervals=[1,2,4,7,15,30];
 const day=(value=new Date())=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(value));
 function addDays(date,n){return new Date(Date.parse(date+'T12:00:00+08:00')+n*86400000).toISOString().slice(0,10)}
-function defaults(){return {schemaVersion:1,contentVersion:'2026.10.17.1',createdAt:new Date().toISOString(),settings:{name:'Coral',newLimit:20,reviewLimit:40,rate:1,voice:'',sleep:0},progress:{},days:{},attempts:[],favorites:[],playback:{mode:'today',ids:[],index:0,chunk:0}}}
+function defaults(){return {schemaVersion:1,contentVersion:'2026.10.17.1',createdAt:new Date().toISOString(),settings:{name:'Coral',newLimit:20,reviewLimit:40,rate:1,voice:'',sleep:0},progress:{},days:{},attempts:[],favorites:[],playback:{mode:'A',ids:[],index:0,chunk:0,sourceVersion:2}}}
 function archive(s,date){return s.days[date]||(s.days[date]={date,planned:[],completed:[],retry:[],attempts:[],listenedSeconds:0,heardUnits:[],createdAt:new Date().toISOString()})}
 function shuffle(items,seed=Date.now()){let a=items.slice(),n=typeof seed==='number'?seed:[...String(seed)].reduce((x,c)=>(x*31+c.charCodeAt(0))>>>0,7);for(let i=a.length-1;i>0;i--){n=(n*1664525+1013904223)>>>0;let j=n%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
 function plan(s,cards,date=day()){
